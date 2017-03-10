@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Splittermond date="2013-06-27" xmlns="http://www.stauder-online.de/Splittermond/v1">
+	<!-- xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.stauder-online.de/Splittermond/v1 http://www.stauder-online.de/Splittermond/v1.xsd" -->
+	<Sources>
+		<Source filename="BaseRules.xml" lastupdate="2017-03-10"></Source>
+		<Source filename="World.xml" lastupdate="2017-03-10"></Source>
+	</Sources>
+</Splittermond>

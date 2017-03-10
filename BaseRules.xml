@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Splittermond date="2013-06-27" xmlns="http://www.stauder-online.de/Splittermond/v1">
+	<!-- xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.stauder-online.de/Splittermond/v1 http://www.stauder-online.de/Splittermond/v1.xsd" -->
+	<BookDefinition shortname="QSR">
+		<Fullname lang="de">Schnellstart-Regeln (Beta-Version)</Fullname>
+		<Fullname lang="en">Quickstart rules (Beta version)</Fullname>
+		<Link>http://splittermond.de/wp-content/uploads/2013/06/Splittermond_Schnellstarter.pdf</Link>
+		<ISBN>987-654-654-654</ISBN>
+	</BookDefinition>
+	<Index>
+		<Actions>
+			<Action id="act_ActiveDefense">
+				<Name lang="de">Aktive Abwehr</Name>
+				<Type>immediate</Type>
+				<Duration>3</Duration>
+				<Description lang="de">Aktive Verteidigung gegen einen Angriff.</Description>
+				<Source lang="de" book="QSR" page="11" />
+			</Action>
+			<Action id="act_ReadyWeapon">
+				<Name lang="de">Waffe ziehen</Name>
+				<Type>continuous</Type>
+				<Duration>5</Duration>
+				<Description lang="de">Waffe ziehen.</Description>
+				<Source lang="de" book="QSR" page="11" />
+			</Action>
+		</Actions>
+		<Alchemy>
+			<Item id="healthPotion">
+				<Name lang="de">Heiltrank</Name>
+				<Difficulty>20</Difficulty>
+				<Cost>0.5</Cost>
+				<Description lang="de">Der Trank heilt sofort nach Einnahme 8 Lebenspunkte.</Description>
+				<Source lang="de" book="QSR" page="15" />
+			</Item>
+		</Alchemy>
+		<Armors>
+			<Armor id="arm_LightLeatherArmor">
+				<Name lang="de">Leichte Lederrüstung</Name>
+				<Defense>1</Defense>
+				<TimeMalus>0</TimeMalus>
+				<Source lang="de" book="QSR" page="13" />
+			</Armor>
+		</Armors>
+		<Masteries>
+			<Mastery id="sbtlWrn">
+				<Name lang="de">Unterschwellige Warnung</Name>
+				<Name lang="en">Subtle warning</Name>
+				<RelatedSkill>Perc</RelatedSkill>
+				<Description lang="de">Der Abenteurer verfügt über einen Sinn für Gefahren. Wenn ihm eine Wahrnehmung-Probe gegen Schwierigkeit 25 gelingt, kann er bei einem Hinterhalt rechtzeitig reagieren, ohne überrascht zu sein.</Description>
+				<Description lang="en">The hero knows danger. If they succeed in a perception test against 25, they can act in an ambush without being surprised.</Description>
+				<Source lang="de" book="QSR" page="9" />
+				<Source lang="en" book="QSR" page="8" />
+			</Mastery>
+			<Mastery id="flmHrt">
+				<Name lang="de">Flammenherz</Name>
+				<RelatedSkill>Fire</RelatedSkill>
+				<Description lang="de">Von dem Feuerzauberer beschworenes Feuer brennt besonders heiß. Alle Feuerzauber, die direkten Schaden anrichten, erhalten einen Schadensbonus von +1.</Description>
+				<Source lang="de" book="QSR" page="10" />
+				<Source lang="en" book="QSR" page="9" />
+			</Mastery>
+		</Masteries>
+		<Skills>
+			<Skill id="Perc">
+				<Name lang="de">Wahrnehmung</Name>
+				<Name lang="en">Perception</Name>
+				<Type>mundane</Type>
+				<TestAttributes>WIL INT</TestAttributes>
+				<Description lang="de">Wahrnehmung ist die Sinnesschärfe eines Charakters und wird eingesetzt, um verborgene Dinge zu erkennen.</Description>
+				<Description lang="en">Perception says how good you can see, hear, smell, feel and taste.</Description>
+				<Source lang="de" book="QSR" page="8" />
+				<Source lang="en" book="QSR" page="7" />
+			</Skill>
+			<Skill id="StrK">
+				<Name lang="de">Straßenkunde</Name>
+				<Type>mundane</Type>
+				<TestAttributes>AUS INT</TestAttributes>
+				<Description lang="de">Wer einen hohen Wert in Straßenkunde besitzt, kennst sich in Städten aus und kommt schnell an Informationen.</Description>
+				<Source lang="de" book="QSR" page="8" />
+			</Skill>
+			<Skill id="Blad">
+				<Name lang="de">Klingenwaffen</Name>
+				<Name lang="en">Blades</Name>
+				<Type>fight</Type>
+				<TestAttributes>BEW STR</TestAttributes>
+				<Description lang="de">Klingenwaffen beschreibt den Umgang mit Dolchen, Schwertern, Säbeln oder Zweihandschwertern.</Description>
+				<Source lang="de" book="QSR" page="7" />
+				<Source lang="en" book="QSR" page="6" />
+			</Skill>
+			<Skill id="Fire">
+				<Name lang="de">Feuer</Name>
+				<Type>magic</Type>
+				<TestAttributes>MYS WIL</TestAttributes>
+				<Description lang="de">Feuermagie lässt ihren Beherrscher Flammen erschaffen und manipulieren.</Description>
+				<Source lang="de" book="QSR" page="8" />
+			</Skill>
+			<Skill id="Shdw">
+				<Name lang="de">Schatten</Name>
+				<Type>magic</Type>
+				<TestAttributes>MYS INT</TestAttributes>
+				<Description lang="de">Schattenmagie gibt dem Zauberer Macht über die Dunkelheit.</Description>
+				<Source lang="de" book="QSR" page="8" />
+			</Skill>
+		</Skills>
+		<Spells>
+			<Spell id="Flame">
+				<Name lang="de">Flamme</Name>
+				<Type>spell</Type>
+				<School>Fire</School>
+				<Difficulty>15</Difficulty>
+				<FocusCost>2</FocusCost>
+				<Range>2</Range>
+				<SpellDuration lang="de">10 Sekunden</SpellDuration>
+				<Variation>
+					<FocusCost>2V1</FocusCost>
+					<Description lang="de">Wenn der Zaubernde 1 Fokuspunkt verzehrt, anstatt ihn zu erschöpfen, erhöht sich die Wirkungsdauer auf 1 Stunde.</Description>
+					<SpellDuration lang="de">1 Stunde</SpellDuration>
+				</Variation>
+				<Description lang="de">Der Zauberer erzeugt ein kleines Flämmchen von der Größe einer Kerzenflamme, mit dem er beispielsweise brennbare Dinge entzünden kann.</Description>
+				<Source lang="de" book="QSR" page="8" />
+			</Spell>
+			<Spell id="FlCtrl">
+				<Name lang="de">Flammenherrschaft</Name>
+				<Type>rite</Type>
+				<School>Fire</School>
+				<Difficulty>19</Difficulty>
+				<FocusCost>K8V2</FocusCost>
+				<Range>8</Range>
+				<SpellDuration lang="de">max. 1 Stunde</SpellDuration>
+				<Variation>
+					<FocusCost>K8V4</FocusCost>
+					<Description lang="de">Bis zur Größe eines brennenden Hauses.</Description>
+				</Variation>
+				<Description lang="de">Der Zaubernde beherrscht ein bereits brennendes Feuer von maximal der Größe eines Scheiterhaufens. Er kann es sowohl heißer brennen lassen (Feuerschaden um 2 Punkte erhöhen) als auch zu niedriger Glut dimmen (Feuerschaden halbiert).</Description>
+				<Source lang="de" book="QSR" page="8" />
+			</Spell>
+			<Spell id="NghtV">
+				<Name lang="de">Nachtaugen</Name>
+				<Type>spell</Type>
+				<School>Shdw</School>
+				<Difficulty>15</Difficulty>
+				<FocusCost>K2</FocusCost>
+				<Range>self</Range>
+				<SpellDuration lang="de">max. 15 Minuten</SpellDuration>
+				<Description lang="de">Der Zauberer schärft seine Sinne, so dass er keine Abzüge auf Wahrnehmung-Proben durch Dunkelheit erhält.</Description>
+				<Source lang="de" book="QSR" page="8" />
+			</Spell>
+		</Spells>
+		<Weapons>
+			<Weapon id="wpn_glaive">
+				<Name lang="de">Glefe</Name>
+				<Type>melee</Type>
+				<Damage>3D6+4</Damage>
+				<Speed>11</Speed>
+				<Cost>12</Cost>
+				<Source lang="de" book="QSR" page="12" />
+			</Weapon>
+			<Weapon id="wpn_dagger">
+				<Name lang="de">Dolch</Name>
+				<Type>melee</Type>
+				<Damage>1D6+1</Damage>
+				<Speed>6</Speed>
+				<Cost>3</Cost>
+				<Source lang="de" book="QSR" page="12" />
+			</Weapon>
+			<Weapon id="wpn_bow">
+				<Name lang="de">Langbogen</Name>
+				<Type>ranged</Type>
+				<Damage>2D6+2</Damage>
+				<Speed>9</Speed>
+				<Range>150</Range>
+				<Cost>15</Cost>
+				<Source lang="de" book="QSR" page="12" />
+			</Weapon>
+		</Weapons>
+	</Index>
+</Splittermond>

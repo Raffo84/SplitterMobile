@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Splittermond date="2013-06-27" xmlns="http://www.stauder-online.de/Splittermond/v1">
+	<!-- xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.stauder-online.de/Splittermond/v1 http://www.stauder-online.de/Splittermond/v1.xsd" -->
+	<BookDefinition shortname="QSR">
+		<Fullname lang="de">Schnellstart-Regeln (Beta-Version)</Fullname>
+		<Fullname lang="en">Quickstart rules (Beta version)</Fullname>
+		<Link>http://splittermond.de/wp-content/uploads/2013/06/Splittermond_Schnellstarter.pdf</Link>
+		<ISBN>987-654-654-654</ISBN>
+	</BookDefinition>
+	<Index>
+		<Map>
+			<Region id="Dragorea">
+				<Name lang="de">Dragorea</Name>
+				<Name lang="en">Dragorea</Name>
+				<Description lang="de">Dragorea liegt im Westen von Lorakis und umfasst das einstige Land der Drachlinge, das heute von ihren ehemaligen Sklavenvölkern wie etwa den Menschen bewohnt wird.</Description>
+				<Description lang="en">Dragorea lies in the west of Lorakis and contains the former land of the Drakelings, which is governed today by their former slaves like the humans.</Description>
+				<Source lang="de" book="QSR" page="5" />
+				<Source lang="en" book="QSR" page="5" />
+				<Realm id="Windtholt">
+					<Name lang="de">Windtholt</Name>
+					<Description lang="de">Liegt im wilden Norden von Dragorea.</Description>
+					<Source lang="de" book="QSR" page="5" />
+				</Realm>
+				<Realm id="DalmaricEmpire">
+					<Name lang="de">Dalmarisches Reich</Name>
+					<Description lang="de">Einst ein mächtiges Reich, inzwischen vom Bürgerkrieg zerrüttet.</Description>
+					<Source lang="de" book="QSR" page="5" />
+				</Realm>
+				<Realm id="Selenia">
+					<Name lang="de">Selenia</Name>
+					<Description lang="de">Kaiserreich in Dragorea.</Description>
+					<Source lang="de" book="QSR" page="5" />
+					<Area id="ArwingerMark">
+						<Name lang="de">Arwinger Mark</Name>
+						<Description lang="de">Idealer Ort für Einsteiger</Description>
+						<Source lang="de" book="QSR" page="5" />
+						<City id="Arwingen">
+							<Name lang="de">Arwingen</Name>
+						</City>
+					</Area>
+				</Realm>
+			</Region>
+			<Region id="Arakea">
+				<Name lang="de">Arakea</Name>
+				<Description lang="de">Dschungel, Baumriesen, magische Beeinflussung der Umwelt</Description>
+				<Source lang="de" book="QSR" page="5" />
+			</Region>
+		</Map>
+	</Index>
+</Splittermond>
