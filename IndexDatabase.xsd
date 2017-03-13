@@ -9,8 +9,7 @@
 							<xs:element name="Source" minOccurs="1" maxOccurs="unbounded">
 								<xs:complexType>
 									<xs:simpleContent>
-										<xs:extension base="xs:string">
-											<xs:attribute name="filename" type="xs:string" use="required" />
+										<xs:extension base="xs:anyURI">
 											<xs:attribute name="lastupdate" type="xs:date" use="required" />
 										</xs:extension>
 									</xs:simpleContent>
@@ -38,36 +37,28 @@
 										<xs:element maxOccurs="unbounded" name="Action">
 											<xs:complexType>
 												<xs:sequence>
-													<xs:element name="Name" type="languageString" minOccurs="1" maxOccurs="unbounded" />
+													<xs:group ref="baseElements" />
 													<xs:element name="Type">
 														<xs:simpleType>
 															<xs:restriction base="xs:string">
 																<xs:enumeration value="immediate" />
+																<xs:enumeration value="reaction" />
 																<xs:enumeration value="continuous" />
 															</xs:restriction>
 														</xs:simpleType>
 													</xs:element>
-													<xs:element name="Duration" type="xs:unsignedByte" />
-													<xs:element name="Description" type="languageString" minOccurs="0" maxOccurs="unbounded" />
-													<xs:element name="Source" type="source" minOccurs="0" maxOccurs="unbounded" />
-												</xs:sequence>
-												<xs:attribute name="id" type="xs:string" use="required" />
-											</xs:complexType>
-										</xs:element>
-									</xs:sequence>
-								</xs:complexType>
-							</xs:element>
-							<xs:element name="Alchemy" minOccurs="0" maxOccurs="1">
-								<xs:complexType>
-									<xs:sequence>
-										<xs:element maxOccurs="unbounded" name="Item">
-											<xs:complexType>
-												<xs:sequence>
-													<xs:element name="Name" type="languageString" minOccurs="1" maxOccurs="unbounded" />
-													<xs:element name="Difficulty" type="xs:unsignedInt" />
-													<xs:element name="Cost" type="xs:float" />
-													<xs:element name="Description" type="languageString" minOccurs="0" maxOccurs="unbounded" />
-													<xs:element name="Source" type="source" minOccurs="0" maxOccurs="unbounded" />
+													<xs:element name="Duration">
+														<xs:simpleType>
+															<xs:union memberTypes="xs:unsignedByte numRange">
+																<xs:simpleType>
+																	<xs:restriction base="xs:token">
+																		<xs:enumeration value="weaponSpeed" />
+																		<xs:enumeration value="spellSpeed" />
+																	</xs:restriction>
+																</xs:simpleType>
+															</xs:union>
+														</xs:simpleType>
+													</xs:element>
 												</xs:sequence>
 												<xs:attribute name="id" type="xs:string" use="required" />
 											</xs:complexType>
@@ -80,46 +71,61 @@
 									<xs:sequence>
 										<xs:element maxOccurs="unbounded" name="Armor">
 											<xs:complexType>
-												<xs:sequence>
-													<xs:element name="Name" type="languageString" minOccurs="1" maxOccurs="unbounded" />
-													<xs:element name="Defense" type="xs:int" />
-													<xs:element name="TimeMalus" type="xs:int" />
-													<xs:element name="Description" type="languageString" minOccurs="0" maxOccurs="unbounded" />
-													<xs:element name="Source" type="source" minOccurs="0" maxOccurs="unbounded" />
-												</xs:sequence>
-												<xs:attribute name="id" type="xs:string" use="required" />
+												<xs:complexContent>
+													<xs:extension base="genericItem">
+														<xs:sequence>
+															<xs:group ref="combatElements" />
+															<xs:element name="Defense" type="xs:nonNegativeInteger" minOccurs="0" default="+0" />
+															<xs:element name="DamageReduction" type="xs:nonNegativeInteger" minOccurs="0" default="0" />
+															<xs:element name="Impediment" type="xs:nonNegativeInteger" minOccurs="0" default="0" />
+															<xs:element name="TimeMalus" type="xs:nonNegativeInteger" minOccurs="0" default="0" />
+														</xs:sequence>
+														<xs:attribute name="id" type="xs:string" use="required" />
+													</xs:extension>
+												</xs:complexContent>
 											</xs:complexType>
 										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="Equipment" minOccurs="0" maxOccurs="1">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element maxOccurs="unbounded" name="Item" type="genericItem" />
 									</xs:sequence>
 								</xs:complexType>
 							</xs:element>
 							<xs:element name="Map" minOccurs="0" maxOccurs="1">
 								<xs:complexType>
 									<xs:sequence>
-										<xs:element maxOccurs="unbounded" name="Region">
+										<xs:element name="Region" maxOccurs="unbounded">
 											<xs:complexType>
 												<xs:sequence>
-													<xs:element name="Name" type="languageString" minOccurs="1" maxOccurs="unbounded" />
-													<xs:element name="Description" type="languageString" minOccurs="0"  maxOccurs="unbounded" />
-													<xs:element name="Source" type="source" minOccurs="0" maxOccurs="unbounded" />
-													<xs:element minOccurs="0" maxOccurs="unbounded" name="Realm">
+													<xs:group ref="baseElements" />
+													<xs:element name="Realm" minOccurs="0" maxOccurs="unbounded">
 														<xs:complexType>
 															<xs:sequence>
-																<xs:element name="Name" type="languageString" minOccurs="1" maxOccurs="unbounded" />
-																<xs:element name="Description" type="languageString" minOccurs="0" maxOccurs="unbounded" />
-																<xs:element name="Source" type="source" minOccurs="0" maxOccurs="unbounded" />
-																<xs:element minOccurs="0" maxOccurs="unbounded" name="Area">
+																<xs:group ref="baseElements" />
+																<xs:element name="Area" minOccurs="0" maxOccurs="unbounded">
 																	<xs:complexType>
 																		<xs:sequence>
-																			<xs:element name="Name" type="languageString" minOccurs="1" maxOccurs="unbounded" />
-																			<xs:element name="Description" type="languageString" minOccurs="0" maxOccurs="unbounded" />
-																			<xs:element name="Source" type="source" minOccurs="0" maxOccurs="unbounded" />
-																			<xs:element minOccurs="0" maxOccurs="unbounded" name="City">
+																			<xs:group ref="baseElements" />
+																			<xs:element name="POI" minOccurs="0" maxOccurs="unbounded">
 																				<xs:complexType>
 																					<xs:sequence>
-																						<xs:element name="Name" type="languageString" minOccurs="1" maxOccurs="unbounded" />
-																						<xs:element name="Description" type="languageString" minOccurs="0" maxOccurs="unbounded" />
-																						<xs:element name="Source" type="source" minOccurs="0" maxOccurs="unbounded" />
+																						<xs:group ref="baseElements" />
+																						<xs:element name="Moonportal" minOccurs="0" maxOccurs="unbounded">
+																							<xs:complexType>
+																								<xs:sequence>
+																									<xs:group ref="baseElements" />
+																									<xs:element name="ConnectedTo" type="xs:string" minOccurs="0" />
+																									<xs:element name="Frequency" type="xs:string" minOccurs="0" />
+																									<xs:element name="OpenDuration" type="xs:string" minOccurs="0" />
+																									<xs:element name="TravelDuration" type="xs:string" minOccurs="0" />
+																								</xs:sequence>
+																								<xs:attribute name="id" type="xs:string" use="required" />
+																							</xs:complexType>
+																						</xs:element>
 																					</xs:sequence>
 																					<xs:attribute name="id" type="xs:string" use="required" />
 																				</xs:complexType>
@@ -145,10 +151,17 @@
 										<xs:element maxOccurs="unbounded" name="Mastery">
 											<xs:complexType>
 												<xs:sequence>
-													<xs:element name="Name" type="languageString" minOccurs="1" maxOccurs="unbounded" />
-													<xs:element name="RelatedSkill" type="xs:string" />
-													<xs:element name="Description" type="languageString" minOccurs="0" maxOccurs="unbounded" />
-													<xs:element name="Source" type="source" minOccurs="0" maxOccurs="unbounded" />
+													<xs:group ref="baseElements" />
+													<xs:element name="RelatedSkill" type="xs:string" maxOccurs="unbounded" />
+													<xs:element name="Level">
+														<xs:simpleType>
+															<xs:restriction base="xs:nonNegativeInteger">
+																<xs:minInclusive value="1" />
+																<xs:maxInclusive value="4" />
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="Prerequisite" type="xs:string" minOccurs="0" maxOccurs="unbounded" />
 												</xs:sequence>
 												<xs:attribute name="id" type="xs:string" use="required" />
 											</xs:complexType>
@@ -162,7 +175,7 @@
 										<xs:element maxOccurs="unbounded" name="Skill">
 											<xs:complexType>
 												<xs:sequence>
-													<xs:element name="Name" type="languageString" minOccurs="1" maxOccurs="unbounded" />
+													<xs:group ref="baseElements" />
 													<xs:element name="Type">
 														<xs:simpleType>
 															<xs:restriction base="xs:string">
@@ -172,13 +185,16 @@
 															</xs:restriction>
 														</xs:simpleType>
 													</xs:element>
-													<xs:element name="TestAttributes">
+													<xs:element name="TestAttributes" minOccurs="0">
 														<xs:simpleType>
 															<xs:list itemType="shortAttribute" />
 														</xs:simpleType>
 													</xs:element>
-													<xs:element name="Description" type="languageString" minOccurs="0" maxOccurs="unbounded" />
-													<xs:element name="Source" type="source" minOccurs="0" maxOccurs="unbounded" />
+													<xs:element name="RelatedMasteries">
+														<xs:simpleType>
+															<xs:list itemType="xs:string" />
+														</xs:simpleType>
+													</xs:element>
 												</xs:sequence>
 												<xs:attribute name="id" type="xs:string" use="required" />
 											</xs:complexType>
@@ -192,8 +208,8 @@
 										<xs:element maxOccurs="unbounded" name="Spell">
 											<xs:complexType>
 												<xs:sequence>
-													<xs:element name="Name" type="languageString" minOccurs="1" maxOccurs="unbounded" />
-													<xs:element name="Type">
+													<xs:group ref="baseElements" />
+													<xs:element name="Category">
 														<xs:simpleType>
 															<xs:restriction base="xs:string">
 																<xs:enumeration value="spell" />
@@ -201,23 +217,49 @@
 															</xs:restriction>
 														</xs:simpleType>
 													</xs:element>
-													<xs:element name="School" type="xs:string" />
-													<xs:element name="Difficulty" type="xs:unsignedInt" />
+													<xs:element name="School" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:simpleContent>
+																<xs:extension base="xs:string">
+																	<xs:attribute name="Level" type="xs:nonNegativeInteger" use="required" />
+																</xs:extension>
+															</xs:simpleContent>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="Type">
+														<xs:simpleType>
+															<xs:list itemType="xs:string" />
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="Difficulty" type="xs:string" />
 													<xs:element name="FocusCost" type="focusCost" />
-													<xs:element name="Range" type="xs:string" />
-													<xs:element name="SpellDuration" type="languageString" minOccurs="0" maxOccurs="unbounded" />
-													<xs:element minOccurs="0" maxOccurs="1" name="Variation">
+													<xs:element name="CastingDuration" type="xs:positiveInteger" />
+													<xs:element name="CastingRange">
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:enumeration value="Caster" />
+																<xs:enumeration value="Touch" />
+																<xs:pattern value="[0-9]+ ?m" />
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="EffectDuration" minOccurs="0" type="xs:string" />
+													<xs:element name="EffectRange" minOccurs="0">
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:pattern value="[0-9]+ ?m" />
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<xs:element name="Improvement" minOccurs="0">
 														<xs:complexType>
 															<xs:sequence>
-																<xs:element name="FocusCost" type="focusCost" />
+																<xs:element name="SuccessGrades" type="xs:positiveInteger" />
+																<xs:element name="AdditionalFocusCost" type="focusCost" />
 																<xs:element name="Description" type="languageString" minOccurs="0" maxOccurs="unbounded" />
-																<xs:element name="SpellDuration" type="languageString" minOccurs="0" maxOccurs="unbounded" />
-																<xs:element name="Range" type="xs:string" minOccurs="0" />
 															</xs:sequence>
 														</xs:complexType>
 													</xs:element>
-													<xs:element name="Description" type="languageString" minOccurs="0" maxOccurs="unbounded" />
-													<xs:element name="Source" type="source" minOccurs="0" maxOccurs="unbounded" />
 												</xs:sequence>
 												<xs:attribute name="id" type="xs:string" use="required" />
 											</xs:complexType>
@@ -230,24 +272,23 @@
 									<xs:sequence>
 										<xs:element maxOccurs="unbounded" name="Weapon">
 											<xs:complexType>
-												<xs:sequence>
-													<xs:element name="Name" type="languageString" minOccurs="1" maxOccurs="unbounded" />
-													<xs:element name="Type">
-														<xs:simpleType>
-															<xs:restriction base="xs:string">
-																<xs:enumeration value="melee" />
-																<xs:enumeration value="ranged" />
-															</xs:restriction>
-														</xs:simpleType>
-													</xs:element>
-													<xs:element name="Damage" type="damageCode" />
-													<xs:element name="Speed" type="xs:unsignedInt" />
-													<xs:element name="Range" type="xs:unsignedInt" minOccurs="0" />
-													<xs:element name="Cost" type="xs:float" />
-													<xs:element name="Description" type="languageString" minOccurs="0" maxOccurs="unbounded" />
-													<xs:element name="Source" type="source" minOccurs="0" maxOccurs="unbounded" />
-												</xs:sequence>
-												<xs:attribute name="id" type="xs:string" use="required" />
+												<xs:complexContent>
+													<xs:extension base="genericItem">
+														<xs:sequence>
+															<xs:group ref="combatElements" />
+															<xs:element name="Damage" type="damageCode" />
+															<xs:element name="Speed" type="xs:nonNegativeInteger" />
+															<xs:element name="UsedAttributes">
+																<xs:simpleType>
+																	<xs:list itemType="shortAttribute" />
+																</xs:simpleType>
+															</xs:element>
+															<xs:element name="AmmunitionCost" type="costString" minOccurs="0" />
+															<xs:element name="Range" type="xs:positiveInteger" minOccurs="0" />
+														</xs:sequence>
+														<xs:attribute name="id" type="xs:string" use="required" />
+													</xs:extension>
+												</xs:complexContent>
 											</xs:complexType>
 										</xs:element>
 									</xs:sequence>
@@ -276,6 +317,97 @@
 		<xs:attribute name="book" type="xs:token" use="required" />
 		<xs:attribute name="page" type="xs:unsignedInt" use="required" />
 	</xs:complexType>
+	<xs:complexType name="genericItem">
+		<xs:sequence>
+			<xs:group ref="baseElements" />
+			<xs:element name="Availability" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="Village" />
+						<xs:enumeration value="SmallTown" />
+						<xs:enumeration value="City" />
+						<xs:enumeration value="Metropolis" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Cost" type="costString" minOccurs="0" />
+			<xs:element name="Weight" type="xs:nonNegativeInteger" minOccurs="0" default="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Unitless number defining the general "weight class" as defined in basic rulebook (p.179 German edition).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Hardness" type="xs:nonNegativeInteger" minOccurs="0" default="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Unitless number defining the general "hardness class" as defined in basic rulebook (p.179 German edition).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Quality" type="xs:integer" minOccurs="0" default="0"/>
+			<xs:element name="Complexity" minOccurs="0" default="U">
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="U">
+							<xs:annotation>
+								<xs:documentation xml:lang="de">Ungeübt</xs:documentation>
+								<xs:documentation xml:lang="en">Untrained</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="G">
+							<xs:annotation>
+								<xs:documentation xml:lang="de">Geselle</xs:documentation>
+								<xs:documentation xml:lang="en">Journeyman</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="F">
+							<xs:annotation>
+								<xs:documentation xml:lang="de">Fachmann</xs:documentation>
+								<xs:documentation xml:lang="en">Expert</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="M">
+							<xs:annotation>
+								<xs:documentation xml:lang="de">Meister</xs:documentation>
+								<xs:documentation xml:lang="en">Master</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="A">
+							<xs:annotation>
+								<xs:documentation xml:lang="de">Anleitung benötigt</xs:documentation>
+								<xs:documentation xml:lang="en">Instructions required</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:string" use="required" />
+	</xs:complexType>
+	<xs:group name="baseElements">
+		<xs:sequence>
+			<xs:element name="Name" type="languageString" minOccurs="1" maxOccurs="unbounded" />
+			<xs:element name="Description" type="languageString" minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="Source" type="source" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:group>
+	<xs:group name="combatElements">
+		<xs:sequence>
+			<xs:element name="MinAttribute" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="xs:positiveInteger">
+							<xs:attribute name="attribute" type="shortAttribute" use="required" />
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Feature" minOccurs="0" maxOccurs="unbounded">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:pattern value="[a-zA-ZäöüÄÖÜß ]+( [0-9]+)?"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:group>
 	<xs:simpleType name="shortAttribute">
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="AUS" />
@@ -297,6 +429,16 @@
 	<xs:simpleType name="damageCode">
 		<xs:restriction base="xs:string">
 			<xs:pattern value="[0-9]+D(6|10)((\+|-)[0-9]+)?" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="numRange">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]+-[0-9]+" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="costString">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]+(S|L|T)" />
 		</xs:restriction>
 	</xs:simpleType>
 </xs:schema>

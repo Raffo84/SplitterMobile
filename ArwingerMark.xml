@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Splittermond date="2017-03-13" xmlns="http://www.stauder-online.de/Splittermond/v1">
+	<!-- xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.stauder-online.de/Splittermond/v1 http://www.stauder-online.de/Splittermond/v1.xsd" -->
+	<BookDefinition shortname="Arw">
+		<Fullname lang="de">Die Arwinger Mark</Fullname>
+		<Fullname lang="en">The Arwing Mark</Fullname>
+		<Link>http://splittermond.de/wp-content/uploads/2015/01/Splittermond_Die-Arwinger-Mark.pdf</Link>
+	</BookDefinition>
+	<Index>
+		<Map>
+			<Region id="region_dragorea">
+				<Name lang="de">Dragorea</Name>
+				<Realm id="realm_selenia">
+					<Name lang="de">Selenia</Name>
+					<Area id="area_arwingermark">
+						<Name lang="de">Arwinger Mark</Name>
+						<POI id="poi_arwingen">
+							<Name lang="de">Arwingen</Name>
+							<Description lang="de">35000 Einwohner, Hauptstadt der Mark, an der Kristallsee gelegen. Hier beginnt die Handelsstraße "Großer Weg" nach Sarnburg.</Description>
+							<Source book="Arw" lang="de" page="22"/>
+						</POI>
+						<POI id="poi_birborn">
+							<Name lang="de">Birborn</Name>
+							<Description lang="de">21000 Einwohner, zweitgrößte Siedlung der Mark</Description>
+							<Source book="Arw" lang="de" page="14"/>
+						</POI>
+						<POI id="poi_drynfurt">
+							<Name lang="de">Drynfurt</Name>
+							<Description lang="de">18000 Einwohner</Description>
+							<Source book="Arw" lang="de" page="13"/>
+						</POI>
+						<POI id="poi_runhag">
+							<Name lang="de">Runhag</Name>
+							<Description lang="de">18000 Einwohner, an der Mündung der Norwen an der Kristallsee gelegen.</Description>
+							<Source book="Arw" lang="de" page="20"/>
+						</POI>
+						<POI id="poi_farningen">
+							<Name lang="de">Farningen</Name>
+							<Description lang="de">17000 Einwohner</Description>
+							<Source book="Arw" lang="de" page="13"/>
+						</POI>
+						<POI id="poi_norwenfurt">
+							<Name lang="de">Norwenfurt</Name>
+							<Description lang="de">16000 Einwohner</Description>
+							<Source book="Arw" lang="de" page="13"/>
+						</POI>
+						<POI id="poi_dornwacht">
+							<Name lang="de">Dornwacht</Name>
+							<Description lang="de">13000 Einwohner</Description>
+							<Source book="Arw" lang="de" page="21"/>
+						</POI>
+						<POI id="poi_neunweg">
+							<Name lang="de">Neunweg</Name>
+							<Description lang="de">8000 Einwohner</Description>
+							<Source book="Arw" lang="de" page="21"/>
+						</POI>
+						<POI id="poi_abienta">
+							<Name lang="de">Abienta</Name>
+							<Description lang="de">3000 Einwohner, größte Wehrsiedlung in den nördlichen Wäldern</Description>
+							<Source book="Arw" lang="de" page="16"/>
+						</POI>
+						<POI id="poi_seelenmoor">
+							<Name lang="de">Seelenmoor</Name>
+							<Description lang="de">Der fast 60km lange Tränendamm führt durch das Moor. </Description>
+							<Source book="Arw" lang="de" page="16"/>
+						</POI>
+					</Area>
+				</Realm>
+			</Region>
+		</Map>
+	</Index>
+</Splittermond>

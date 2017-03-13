@@ -1,175 +1,773 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Splittermond date="2013-06-27" xmlns="http://www.stauder-online.de/Splittermond/v1">
+<Splittermond date="2017-03-13" xmlns="http://www.stauder-online.de/Splittermond/v1">
 	<!-- xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.stauder-online.de/Splittermond/v1 http://www.stauder-online.de/Splittermond/v1.xsd" -->
-	<BookDefinition shortname="QSR">
-		<Fullname lang="de">Schnellstart-Regeln (Beta-Version)</Fullname>
-		<Fullname lang="en">Quickstart rules (Beta version)</Fullname>
-		<Link>http://splittermond.de/wp-content/uploads/2013/06/Splittermond_Schnellstarter.pdf</Link>
-		<ISBN>987-654-654-654</ISBN>
+	<BookDefinition shortname="BR">
+		<Fullname lang="de">Die Regeln</Fullname>
+		<Fullname lang="en">Basic Rules</Fullname>
+		<Link>http://shop.uhrwerk-verlag.de/splittermond/239-splittermond-regeln.html</Link>
+		<ISBN>978-3942012676</ISBN>
 	</BookDefinition>
 	<Index>
 		<Actions>
-			<Action id="act_ActiveDefense">
-				<Name lang="de">Aktive Abwehr</Name>
-				<Type>immediate</Type>
-				<Duration>3</Duration>
-				<Description lang="de">Aktive Verteidigung gegen einen Angriff.</Description>
-				<Source lang="de" book="QSR" page="11" />
+			<!-- Movement actions -->
+			<Action id="act_move_getup_lying">
+				<Name lang="de">Aufstehen (liegend)</Name>
+				<Source book="BR" lang="de" page="159"/>
+				<Type>continuous</Type>
+				<Duration>6</Duration>
 			</Action>
-			<Action id="act_ReadyWeapon">
-				<Name lang="de">Waffe ziehen</Name>
+			<Action id="act_move_getup_sitting">
+				<Name lang="de">Aufstehen (sitzend/knieend)</Name>
+				<Source book="BR" lang="de" page="159"/>
+				<Type>continuous</Type>
+				<Duration>3</Duration>
+			</Action>
+			<Action id="act_move_leavefight">
+				<Name lang="de">Aus dem Kampf lösen</Name>
+				<Description lang="de">Von einem Gegner in Nahkampfdistanz bis zu 2m entfernen, ohne Gelegenheitsangriffe zu provizieren. Akrobatik-Probe gegen Geistigen Widerstand des Gegners erforderlich.</Description>
+				<Source book="BR" lang="de" page="159"/>
+				<Type>immediate</Type>
+				<Duration>5</Duration>
+			</Action>
+			<Action id="act_move_drop">
+				<Name lang="de">Fallenlassen</Name>
+				<Source book="BR" lang="de" page="159"/>
+				<Type>reaction</Type>
+				<Duration>2</Duration>
+			</Action>
+			<Action id="act_move_free">
+				<Name lang="de">Freie Bewegung</Name>
+				<Description lang="de">Vor jeder sofortigen und kontinuierlichen Aktion (keine Bewegungshandlung) darf sich der Handelnde ohne zusätzlichen Tickaufwand (aber zu mindestens 3 Ticks) bis zu 2m bewegen.</Description>
+				<Source book="BR" lang="de" page="159"/>
+				<Type>immediate</Type>
+				<Duration>0</Duration>
+			</Action>
+			<Action id="act_move_crawl">
+				<Name lang="de">Kriechen</Name>
+				<Description lang="de">Maximal 1m pro Handlung, gilt als liegende Kampfposition</Description>
+				<Source book="BR" lang="de" page="159"/>
 				<Type>continuous</Type>
 				<Duration>5</Duration>
-				<Description lang="de">Waffe ziehen.</Description>
-				<Source lang="de" book="QSR" page="11" />
+			</Action>
+			<Action id="act_move_run">
+				<Name lang="de">Laufen</Name>
+				<Description lang="de">Maximal GES Meter</Description>
+				<Source book="BR" lang="de" page="159"/>
+				<Type>continuous</Type>
+				<Duration>5</Duration>
+			</Action>
+			<Action id="act_move_sprint">
+				<Name lang="de">Sprinten</Name>
+				<Description lang="de">Maximal dreifache GES Meter, kann keine Reaktionen ausführen, Angreifer erhalten Taktischen Vorteil</Description>
+				<Source book="BR" lang="de" page="159"/>
+				<Type>continuous</Type>
+				<Duration>10</Duration>
+			</Action>
+			<!-- Melee actions -->
+			<Action id="act_melee_attack">
+				<Name lang="de">Nahkampfangriff</Name>
+				<Description lang="de">Probe auf passende Kampffertigkeit gegen Verteidigung des Ziels. Kann niemals weniger als 3 Ticks dauern</Description>
+				<Source book="BR" lang="de" page="160"/>
+				<Type>immediate</Type>
+				<Duration>weaponSpeed</Duration>
+			</Action>
+			<Action id="act_melee_maneuver">
+				<Name lang="de">Manöver</Name>
+				<Description lang="de">Können im für Erfolgsgrade bei gelungenen Angriffen eingesetzt werden. Freie Manöver können von jedem Charakter nach einem erfolgreichen Angriff angesagt werden. Meisterschaftsmanöver müssen erworben werden und vor dem Angriff angekündigt werden.</Description>
+				<Source book="BR" lang="de" page="160"/>
+				<Type>immediate</Type>
+				<Duration>weaponSpeed</Duration>
+			</Action>
+			<Action id="act_melee_opportunity">
+				<Name lang="de">Gelegenheitsangriff</Name>
+				<Description lang="de">Die meisten Bewegungshandlungen oder der Beginn vieler kontinuierlichen Aktionen eines Gegners in Nahkampfdistanz können Gelegenheitsangriffe als Reaktion provozieren. Kann mit freien, aber nicht mit Meisterschaftsmanövern kombiniert werden.</Description>
+				<Source book="BR" lang="de" page="160"/>
+				<Type>reaction</Type>
+				<Duration>weaponSpeed</Duration>
+			</Action>
+			<Action id="act_melee_findGap">
+				<Name lang="de">Lücke suchen</Name>
+				<Description lang="de">Für je 2 aufgewandte Ticks vor einem Angriff erhält der Angreifer 1 Punkt Bonus auf den Angriff (maximal 3). Provoziert keinen Gelegenheitsangriff.</Description>
+				<Source book="BR" lang="de" page="161"/>
+				<Type>continuous</Type>
+				<Duration>2-6</Duration>
+			</Action>
+			<Action id="act_melee_shield">
+				<Name lang="de">Schildstoß</Name>
+				<Description lang="de">Schildträger können eine Aktive Abwehr mit beliebiger Nahkampffertigkeit + BEW + STÄ ausführen, um 1W6+1 Schaden zu verursachen. Freie Manöver können genutzt werden, keine Meisterschaftsmanöver. Gilt als Einsatz der falschen Hand (S.171).</Description>
+				<Source book="BR" lang="de" page="161"/>
+				<Type>immediate</Type>
+				<Duration>7</Duration>
+			</Action>
+			<!-- Ranged attack actions -->
+			<Action id="act_ranged_readyWeapon">
+				<Name lang="de">Fernkampfwaffe bereitmachen</Name>
+				<Description lang="de">Zum Bereitmachen einer Schusswaffe werden immer beide Hände benötigt, auch wenn die Waffe einhändig ist.</Description>
+				<Source book="BR" lang="de" page="162"/>
+				<Type>continuous</Type>
+				<Duration>weaponSpeed</Duration>
+			</Action>
+			<Action id="act_ranged_aim">
+				<Name lang="de">Zielen</Name>
+				<Description lang="de">Für je 2 aufgewandte Ticks erhält der Angreifer 1 Punkt Bonus auf den Angriff (maximal 3). Muss zwischen Bereitmachen und Fernkampfangriff erfolgen, Ziel muss bereits beim Zielen angesagt werden.</Description>
+				<Source book="BR" lang="de" page="162"/>
+				<Type>continuous</Type>
+				<Duration>2-6</Duration>
+			</Action>
+			<Action id="act_ranged_attack">
+				<Name lang="de">Fernkampfangriff</Name>
+				<Description lang="de">Waffe muss vor dem Angriff bereitgemacht worden sein.</Description>
+				<Source book="BR" lang="de" page="162"/>
+				<Type>immediate</Type>
+				<Duration>3</Duration>
+			</Action>
+			<!-- Defense actions -->
+			<Action id="act_defense_active">
+				<Name lang="de">Aktive Abwehr</Name>
+				<Description lang="de">Parieren: Probe auf Nahkampffertigkeit einer Waffe oder Parierwaffe gegen 15, um VTD gegen Nahkampfangriffe um 1 + EG zu erhöhen.
+Schildabwehr: Probe auf beliebige Nahkampffertigkeit + INT + STÄ gegen 15, um mit einem Schild die VTD gegen Nah- oder Fernkampfangriffe um 1 + EG zu erhöhen.
+Ausweichen: Probe auf Akrobatik gegen 15, um VTD gegen Nah- oder Fernkampfangriffe um 1 + EG zu erhöhen.
+Widerstände: Probe auf Zähigkeit (für KW) oder Entschlossenheit (für GW) gegen 15, um entsprechenden Widerstand um 1 + EG zu erhöhen; auch gegen Gifte u.a. einsetzbar, wenn man sich des auslösenden Effekts bewusst ist.</Description>
+				<Source book="BR" lang="de" page="138"/>
+				<Type>reaction</Type>
+				<Duration>3</Duration>
+			</Action>
+			<Action id="act_defense_jump">
+				<Name lang="de">Ausweichsprung</Name>
+				<Description lang="de">Probe auf Akrobatik gegen 15, um den Schaden von Flächeneffekten um 1 + EG zu senken.</Description>
+				<Source book="BR" lang="de" page="164"/>
+				<Type>reaction</Type>
+				<Duration>3</Duration>
+			</Action>
+			<Action id="act_defense_escapeGrip">
+				<Name lang="de">Aus Umklammerung befreien</Name>
+				<Description lang="de">Probe auf Athletik oder Akrobatik gegen Kampffertigkeit des Gegners (oder festen Wert eines unbelebten Effektes), um sich aus dem Zustand Ringend zu befreien.</Description>
+				<Source book="BR" lang="de" page="164"/>
+				<Type>immediate</Type>
+				<Duration>5</Duration>
+			</Action>
+			<Action id="act_defense_releaseGrip">
+				<Name lang="de">Umklammerung lösen</Name>
+				<Source book="BR" lang="de" page="164"/>
+				<Type>reaction</Type>
+				<Duration>3</Duration>
+			</Action>
+			<!-- Other actions -->
+			<Action id="act_other_breathe">
+				<Name lang="de">Atemholen</Name>
+				<Description lang="de">Heilt 10 + KON Betäubungsschaden. Kann nur einmal pro Kampf eingesetzt werden, für weiteren Betäubungsschaden oder echten Schaden sind Verschnaufpausen oder Ruhepausen (S.173) nötig.</Description>
+				<Source book="BR" lang="de" page="165"/>
+				<Type>continuous</Type>
+				<Duration>8</Duration>
+			</Action>
+			<Action id="act_other_focusMagic">
+				<Name lang="de">Magie fokussieren</Name>
+				<Source book="BR" lang="de" page="196"/>
+				<Type>continuous</Type>
+				<Duration>spellSpeed</Duration>
+			</Action>
+			<Action id="act_other_castSpell">
+				<Name lang="de">Zauber auslösen</Name>
+				<Source book="BR" lang="de" page="196"/>
+				<Type>immediate</Type>
+				<Duration>3</Duration>
+			</Action>
+			<Action id="act_other_dropItem">
+				<Name lang="de">Gegenstand fallen lassen</Name>
+				<Source book="BR" lang="de" page="165"/>
+				<Type>immediate</Type>
+				<Duration>0</Duration>
+			</Action>
+			<Action id="act_other_useItem">
+				<Name lang="de">Gegenstand verwenden</Name>
+				<Description lang="de">Kann für komplexe Handlungen mehrfach erforderlich sein (z.B. Gegenstand aus Rucksack holen).</Description>
+				<Source book="BR" lang="de" page="165"/>
+				<Type>continuous</Type>
+				<Duration>5</Duration>
 			</Action>
 		</Actions>
-		<Alchemy>
-			<Item id="healthPotion">
-				<Name lang="de">Heiltrank</Name>
-				<Difficulty>20</Difficulty>
-				<Cost>0.5</Cost>
-				<Description lang="de">Der Trank heilt sofort nach Einnahme 8 Lebenspunkte.</Description>
-				<Source lang="de" book="QSR" page="15" />
-			</Item>
-		</Alchemy>
 		<Armors>
-			<Armor id="arm_LightLeatherArmor">
-				<Name lang="de">Leichte Lederrüstung</Name>
-				<Defense>1</Defense>
+			<!-- regular armor -->
+			<Armor id="arm_cloth">
+				<Name lang="de">Tuchrüstung</Name>
+				<Source book="BR" lang="de" page="188"/>
+				<Availability>SmallTown</Availability>
+				<Cost>6L</Cost>
+				<Weight>3</Weight>
+				<Hardness>2</Hardness>
+				<Complexity>G</Complexity>
+				<Defense>+1</Defense>
+			</Armor>
+			<Armor id="arm_leather_light">
+				<Name lang="de">Leder, leicht</Name>
+				<Source book="BR" lang="de" page="188"/>
+				<Availability>SmallTown</Availability>
+				<Cost>9L</Cost>
+				<Weight>3</Weight>
+				<Hardness>3</Hardness>
+				<Complexity>G</Complexity>
+				<MinAttribute attribute="STR">1</MinAttribute>
+				<Defense>+1</Defense>
+				<DamageReduction>1</DamageReduction>
+				<Impediment>1</Impediment>
+			</Armor>
+			<Armor id="arm_leather_medium">
+				<Name lang="de">Leder, mittel</Name>
+				<Source book="BR" lang="de" page="188"/>
+				<Availability>SmallTown</Availability>
+				<Cost>10L</Cost>
+				<Weight>4</Weight>
+				<Hardness>3</Hardness>
+				<Complexity>G</Complexity>
+				<MinAttribute attribute="STR">1</MinAttribute>
+				<Feature>Standfest</Feature>
+				<Defense>+2</Defense>
+				<DamageReduction>1</DamageReduction>
+				<Impediment>2</Impediment>
+			</Armor>
+			<Armor id="arm_leather_heavy">
+				<Name lang="de">Leder, schwer</Name>
+				<Source book="BR" lang="de" page="188"/>
+				<Availability>SmallTown</Availability>
+				<Cost>11L</Cost>
+				<Weight>4</Weight>
+				<Hardness>3</Hardness>
+				<Complexity>F</Complexity>
+				<MinAttribute attribute="STR">1</MinAttribute>
+				<Defense>+3</Defense>
+				<TimeMalus>1</TimeMalus>
+			</Armor>
+			<Armor id="arm_coat">
+				<Name lang="de">Fellrüstung</Name>
+				<Source book="BR" lang="de" page="188"/>
+				<Availability>Village</Availability>
+				<Cost>4L</Cost>
+				<Weight>3</Weight>
+				<Hardness>2</Hardness>
+				<Complexity>U</Complexity>
+				<MinAttribute attribute="STR">1</MinAttribute>
+				<Feature>Primitiv</Feature>
+				<Defense>+1</Defense>
+				<DamageReduction>2</DamageReduction>
+				<TimeMalus>1</TimeMalus>
+			</Armor>
+			<Armor id="arm_chain_light">
+				<Name lang="de">Kette, leicht</Name>
+				<Source book="BR" lang="de" page="188"/>
+				<Availability>SmallTown</Availability>
+				<Cost>12L</Cost>
+				<Weight>4</Weight>
+				<Hardness>6</Hardness>
+				<Complexity>G</Complexity>
+				<MinAttribute attribute="STR">2</MinAttribute>
+				<Defense>+2</Defense>
+				<DamageReduction>2</DamageReduction>
+				<Impediment>1</Impediment>
+				<TimeMalus>1</TimeMalus>
+			</Armor>
+			<Armor id="arm_chain_heavy">
+				<Name lang="de">Kette, schwer</Name>
+				<Source book="BR" lang="de" page="188"/>
+				<Availability>SmallTown</Availability>
+				<Cost>15L</Cost>
+				<Weight>4</Weight>
+				<Hardness>6</Hardness>
+				<Complexity>F</Complexity>
+				<MinAttribute attribute="STR">2</MinAttribute>
+				<Feature>Wattiert</Feature>
+				<Defense>+3</Defense>
+				<DamageReduction>2</DamageReduction>
+				<Impediment>3</Impediment>
+				<TimeMalus>2</TimeMalus>
+			</Armor>
+			<Armor id="arm_scale">
+				<Name lang="de">Schuppe</Name>
+				<Source book="BR" lang="de" page="188"/>
+				<Availability>SmallTown</Availability>
+				<Cost>20L</Cost>
+				<Weight>5</Weight>
+				<Hardness>7</Hardness>
+				<Complexity>F</Complexity>
+				<MinAttribute attribute="STR">3</MinAttribute>
+				<Feature>Wattiert</Feature>
+				<Defense>+4</Defense>
+				<DamageReduction>2</DamageReduction>
+				<Impediment>4</Impediment>
+				<TimeMalus>2</TimeMalus>
+			</Armor>
+			<Armor id="arm_plate_light">
+				<Name lang="de">Platte, leicht</Name>
+				<Source book="BR" lang="de" page="188"/>
+				<Availability>City</Availability>
+				<Cost>25L</Cost>
+				<Weight>5</Weight>
+				<Hardness>7</Hardness>
+				<Complexity>F</Complexity>
+				<MinAttribute attribute="STR">3</MinAttribute>
+				<Feature>Standfest</Feature>
+				<Defense>+3</Defense>
+				<DamageReduction>1</DamageReduction>
+				<Impediment>2</Impediment>
+				<TimeMalus>1</TimeMalus>
+			</Armor>
+			<Armor id="arm_pllate_heavy">
+				<Name lang="de">Platte, schwer</Name>
+				<Source book="BR" lang="de" page="188"/>
+				<Availability>City</Availability>
+				<Cost>30L</Cost>
+				<Weight>6</Weight>
+				<Hardness>7</Hardness>
+				<Complexity>M</Complexity>
+				<MinAttribute attribute="STR">4</MinAttribute>
+				<Defense>+4</Defense>
+				<DamageReduction>4</DamageReduction>
+				<Impediment>3</Impediment>
+				<TimeMalus>3</TimeMalus>
+			</Armor>
+			<!-- shields -->
+			<Armor id="arm_shld_buckler">
+				<Name lang="de">Buckler</Name>
+				<Source book="BR" lang="de" page="188"/>
+				<Availability>SmallTown</Availability>
+				<Cost>4L</Cost>
+				<Weight>2</Weight>
+				<Hardness>6</Hardness>
+				<Complexity>G</Complexity>
+				<MinAttribute attribute="BEW">2</MinAttribute>
+				<Feature>Defensiv 2</Feature>
+				<Impediment>1</Impediment>
+			</Armor>
+			<Armor id="arm_shld_leather">
+				<Name lang="de">Lederschild</Name>
+				<Source book="BR" lang="de" page="188"/>
+				<Availability>SmallTown</Availability>
+				<Cost>3L</Cost>
+				<Weight>2</Weight>
+				<Hardness>3</Hardness>
+				<Complexity>G</Complexity>
+				<MinAttribute attribute="STR">2</MinAttribute>
+				<Feature>Defensiv 2</Feature>
+				<Defense>+1</Defense>
+				<Impediment>1</Impediment>
+				<TimeMalus>1</TimeMalus>
+			</Armor>
+			<Armor id="arm_shld_round">
+				<Name lang="de">Rundschild</Name>
+				<Source book="BR" lang="de" page="188"/>
+				<Availability>SmallTown</Availability>
+				<Cost>5L</Cost>
+				<Weight>3</Weight>
+				<Hardness>3</Hardness>
+				<Complexity>G</Complexity>
+				<MinAttribute attribute="STR">2</MinAttribute>
+				<Feature>Defensiv 1</Feature>
+				<Defense>+2</Defense>
+				<Impediment>2</Impediment>
 				<TimeMalus>0</TimeMalus>
-				<Source lang="de" book="QSR" page="13" />
+			</Armor>
+			<Armor id="arm_shld_great">
+				<Name lang="de">Großschild</Name>
+				<Source book="BR" lang="de" page="188"/>
+				<Availability>SmallTown</Availability>
+				<Cost>7L</Cost>
+				<Weight>4</Weight>
+				<Hardness>5</Hardness>
+				<Complexity>F</Complexity>
+				<MinAttribute attribute="STR">3</MinAttribute>
+				<Feature>Defensiv 2</Feature>
+				<Defense>+2</Defense>
+				<Impediment>2</Impediment>
+				<TimeMalus>1</TimeMalus>
+			</Armor>
+			<Armor id="arm_shld_tower">
+				<Name lang="de">Turmschild</Name>
+				<Source book="BR" lang="de" page="188"/>
+				<Availability>City</Availability>
+				<Cost>12L</Cost>
+				<Weight>5</Weight>
+				<Hardness>7</Hardness>
+				<Complexity>F</Complexity>
+				<MinAttribute attribute="STR">4</MinAttribute>
+				<Feature>Defensiv 1</Feature>
+				<Feature>Deckung</Feature>
+				<Defense>+3</Defense>
+				<Impediment>2</Impediment>
+				<TimeMalus>2</TimeMalus>
 			</Armor>
 		</Armors>
-		<Masteries>
-			<Mastery id="sbtlWrn">
-				<Name lang="de">Unterschwellige Warnung</Name>
-				<Name lang="en">Subtle warning</Name>
-				<RelatedSkill>Perc</RelatedSkill>
-				<Description lang="de">Der Abenteurer verfügt über einen Sinn für Gefahren. Wenn ihm eine Wahrnehmung-Probe gegen Schwierigkeit 25 gelingt, kann er bei einem Hinterhalt rechtzeitig reagieren, ohne überrascht zu sein.</Description>
-				<Description lang="en">The hero knows danger. If they succeed in a perception test against 25, they can act in an ambush without being surprised.</Description>
-				<Source lang="de" book="QSR" page="9" />
-				<Source lang="en" book="QSR" page="8" />
-			</Mastery>
-			<Mastery id="flmHrt">
-				<Name lang="de">Flammenherz</Name>
-				<RelatedSkill>Fire</RelatedSkill>
-				<Description lang="de">Von dem Feuerzauberer beschworenes Feuer brennt besonders heiß. Alle Feuerzauber, die direkten Schaden anrichten, erhalten einen Schadensbonus von +1.</Description>
-				<Source lang="de" book="QSR" page="10" />
-				<Source lang="en" book="QSR" page="9" />
-			</Mastery>
-		</Masteries>
-		<Skills>
-			<Skill id="Perc">
-				<Name lang="de">Wahrnehmung</Name>
-				<Name lang="en">Perception</Name>
-				<Type>mundane</Type>
-				<TestAttributes>WIL INT</TestAttributes>
-				<Description lang="de">Wahrnehmung ist die Sinnesschärfe eines Charakters und wird eingesetzt, um verborgene Dinge zu erkennen.</Description>
-				<Description lang="en">Perception says how good you can see, hear, smell, feel and taste.</Description>
-				<Source lang="de" book="QSR" page="8" />
-				<Source lang="en" book="QSR" page="7" />
-			</Skill>
-			<Skill id="StrK">
-				<Name lang="de">Straßenkunde</Name>
-				<Type>mundane</Type>
-				<TestAttributes>AUS INT</TestAttributes>
-				<Description lang="de">Wer einen hohen Wert in Straßenkunde besitzt, kennst sich in Städten aus und kommt schnell an Informationen.</Description>
-				<Source lang="de" book="QSR" page="8" />
-			</Skill>
-			<Skill id="Blad">
-				<Name lang="de">Klingenwaffen</Name>
-				<Name lang="en">Blades</Name>
-				<Type>fight</Type>
-				<TestAttributes>BEW STR</TestAttributes>
-				<Description lang="de">Klingenwaffen beschreibt den Umgang mit Dolchen, Schwertern, Säbeln oder Zweihandschwertern.</Description>
-				<Source lang="de" book="QSR" page="7" />
-				<Source lang="en" book="QSR" page="6" />
-			</Skill>
-			<Skill id="Fire">
-				<Name lang="de">Feuer</Name>
-				<Type>magic</Type>
-				<TestAttributes>MYS WIL</TestAttributes>
-				<Description lang="de">Feuermagie lässt ihren Beherrscher Flammen erschaffen und manipulieren.</Description>
-				<Source lang="de" book="QSR" page="8" />
-			</Skill>
-			<Skill id="Shdw">
-				<Name lang="de">Schatten</Name>
-				<Type>magic</Type>
-				<TestAttributes>MYS INT</TestAttributes>
-				<Description lang="de">Schattenmagie gibt dem Zauberer Macht über die Dunkelheit.</Description>
-				<Source lang="de" book="QSR" page="8" />
-			</Skill>
-		</Skills>
-		<Spells>
-			<Spell id="Flame">
-				<Name lang="de">Flamme</Name>
-				<Type>spell</Type>
-				<School>Fire</School>
-				<Difficulty>15</Difficulty>
-				<FocusCost>2</FocusCost>
-				<Range>2</Range>
-				<SpellDuration lang="de">10 Sekunden</SpellDuration>
-				<Variation>
-					<FocusCost>2V1</FocusCost>
-					<Description lang="de">Wenn der Zaubernde 1 Fokuspunkt verzehrt, anstatt ihn zu erschöpfen, erhöht sich die Wirkungsdauer auf 1 Stunde.</Description>
-					<SpellDuration lang="de">1 Stunde</SpellDuration>
-				</Variation>
-				<Description lang="de">Der Zauberer erzeugt ein kleines Flämmchen von der Größe einer Kerzenflamme, mit dem er beispielsweise brennbare Dinge entzünden kann.</Description>
-				<Source lang="de" book="QSR" page="8" />
-			</Spell>
-			<Spell id="FlCtrl">
-				<Name lang="de">Flammenherrschaft</Name>
-				<Type>rite</Type>
-				<School>Fire</School>
-				<Difficulty>19</Difficulty>
-				<FocusCost>K8V2</FocusCost>
-				<Range>8</Range>
-				<SpellDuration lang="de">max. 1 Stunde</SpellDuration>
-				<Variation>
-					<FocusCost>K8V4</FocusCost>
-					<Description lang="de">Bis zur Größe eines brennenden Hauses.</Description>
-				</Variation>
-				<Description lang="de">Der Zaubernde beherrscht ein bereits brennendes Feuer von maximal der Größe eines Scheiterhaufens. Er kann es sowohl heißer brennen lassen (Feuerschaden um 2 Punkte erhöhen) als auch zu niedriger Glut dimmen (Feuerschaden halbiert).</Description>
-				<Source lang="de" book="QSR" page="8" />
-			</Spell>
-			<Spell id="NghtV">
-				<Name lang="de">Nachtaugen</Name>
-				<Type>spell</Type>
-				<School>Shdw</School>
-				<Difficulty>15</Difficulty>
-				<FocusCost>K2</FocusCost>
-				<Range>self</Range>
-				<SpellDuration lang="de">max. 15 Minuten</SpellDuration>
-				<Description lang="de">Der Zauberer schärft seine Sinne, so dass er keine Abzüge auf Wahrnehmung-Proben durch Dunkelheit erhält.</Description>
-				<Source lang="de" book="QSR" page="8" />
-			</Spell>
-		</Spells>
+		<Equipment>
+			<!-- Scholars and healer -->
+			<Item id="itm_scl_tome">
+				<Name lang="de">Foliant</Name>
+				<Source book="BR" lang="de" page="190"/>
+				<Availability>City</Availability>
+				<Cost>15L</Cost>
+				<Weight>2</Weight>
+				<Hardness>1</Hardness>
+				<Complexity>G</Complexity>
+			</Item>
+			<Item id="itm_scl_instr">
+				<Name lang="de">Heilerbesteck</Name>
+				<Source book="BR" lang="de" page="190"/>
+				<Availability>City</Availability>
+				<Cost>10L</Cost>
+				<Weight>1</Weight>
+				<Hardness>4</Hardness>
+				<Complexity>G</Complexity>
+			</Item>
+			<Item id="itm_scl_parchment">
+				<Name lang="de">Pergament</Name>
+				<Source book="BR" lang="de" page="190"/>
+				<Availability>SmallTown</Availability>
+				<Cost>10T</Cost>
+				<Complexity>U</Complexity>
+			</Item>
+			<Item id="itm_scl_writing">
+				<Name lang="de">Schreibutensilien</Name>
+				<Source book="BR" lang="de" page="190"/>
+				<Availability>SmallTown</Availability>
+				<Cost>1L</Cost>
+				<Complexity>G</Complexity>
+			</Item>
+			<Item id="itm_scl_diary">
+				<Name lang="de">Tagebuch</Name>
+				<Source book="BR" lang="de" page="190"/>
+				<Availability>SmallTown</Availability>
+				<Cost>5L</Cost>
+				<Weight>1</Weight>
+				<Hardness>1</Hardness>
+				<Complexity>U</Complexity>
+			</Item>
+			<Item id="itm_scl_bandages">
+				<Name lang="de">Verbandszeug</Name>
+				<Source book="BR" lang="de" page="190"/>
+				<Availability>Village</Availability>
+				<Cost>10T</Cost>
+				<Complexity>U</Complexity>
+			</Item>
+			<!-- Thiefs -->
+			<Item id="itm_thf_crowbar">
+				<Name lang="de">Brecheisen</Name>
+				<Source book="BR" lang="de" page="190"/>
+				<Availability>Village</Availability>
+				<Cost>2L</Cost>
+				<Weight>2</Weight>
+				<Hardness>6</Hardness>
+				<Complexity>U</Complexity>
+			</Item>
+			<Item id="itm_thf_lockpick">
+				<Name lang="de">Dietriche</Name>
+				<Source book="BR" lang="de" page="190"/>
+				<Availability>SmallTown</Availability>
+				<Cost>15L</Cost>
+				<Weight>1</Weight>
+				<Hardness>6</Hardness>
+				<Complexity>F</Complexity>
+			</Item>
+			<Item id="itm_thf_climbinghooks">
+				<Name lang="de">Kletterhaken (10 Stück)</Name>
+				<Source book="BR" lang="de" page="190"/>
+				<Availability>SmallTown</Availability>
+				<Cost>50T</Cost>
+				<Weight>1</Weight>
+				<Hardness>6</Hardness>
+				<Complexity>U</Complexity>
+			</Item>
+			<Item id="itm_thf_hook">
+				<Name lang="de">Wurfhaken</Name>
+				<Source book="BR" lang="de" page="190"/>
+				<Availability>SmallTown</Availability>
+				<Cost>1L</Cost>
+				<Weight>2</Weight>
+				<Hardness>6</Hardness>
+				<Complexity>G</Complexity>
+			</Item>
+			<!-- Craftsmen -->
+			<Item id="itm_craft_alchemist">
+				<Name lang="de">Alchemistenkoffer</Name>
+				<Source book="BR" lang="de" page="190"/>
+				<Availability>Metropolis</Availability>
+				<Cost>30L</Cost>
+				<Weight>3</Weight>
+				<Hardness>1</Hardness>
+				<Complexity>F</Complexity>
+			</Item>
+			<Item id="itm_craft_forge">
+				<Name lang="de">Schmiedeausstattung</Name>
+				<Source book="BR" lang="de" page="190"/>
+				<Availability>SmallTown</Availability>
+				<Cost>30L</Cost>
+				<Weight>6</Weight>
+				<Hardness>7</Hardness>
+				<Complexity>G</Complexity>
+			</Item>
+			<Item id="itm_craft_tailor">
+				<Name lang="de">Schneiderwerkzeug</Name>
+				<Source book="BR" lang="de" page="190"/>
+				<Availability>Village</Availability>
+				<Cost>10L</Cost>
+				<Weight>2</Weight>
+				<Hardness>4</Hardness>
+				<Complexity>G</Complexity>
+			</Item>
+			<Item id="itm_craft_carpenter">
+				<Name lang="de">Schreinerwerkzeug</Name>
+				<Source book="BR" lang="de" page="190"/>
+				<Availability>Village</Availability>
+				<Cost>10L</Cost>
+				<Weight>4</Weight>
+				<Hardness>4</Hardness>
+				<Complexity>G</Complexity>
+			</Item>
+			<Item id="itm_craft_sledge">
+				<Name lang="de">Vorschlaghammer</Name>
+				<Source book="BR" lang="de" page="190"/>
+				<Availability>Village</Availability>
+				<Cost>2L</Cost>
+				<Weight>4</Weight>
+				<Hardness>5</Hardness>
+				<Complexity>U</Complexity>
+			</Item>
+			<!-- Artists -->
+			<Item id="itm_art_boardgame">
+				<Name lang="de">Brettspiel</Name>
+				<Source book="BR" lang="de" page="190"/>
+				<Availability>SmallTown</Availability>
+				<Cost>50T</Cost>
+				<Weight>1</Weight>
+				<Hardness>2</Hardness>
+				<Complexity>U</Complexity>
+			</Item>
+			<Item id="itm_art_flute">
+				<Name lang="de">Flöte</Name>
+				<Source book="BR" lang="de" page="190"/>
+				<Availability>Village</Availability>
+				<Cost>50T</Cost>
+				<Hardness>2</Hardness>
+				<Complexity>G</Complexity>
+			</Item>
+			<Item id="itm_art_juggleball">
+				<Name lang="de">Jonglierball</Name>
+				<Source book="BR" lang="de" page="190"/>
+				<Availability>Village</Availability>
+				<Cost>5T</Cost>
+				<Hardness>1</Hardness>
+				<Complexity>U</Complexity>
+			</Item>
+			<Item id="itm_art_pencil">
+				<Name lang="de">Kohlestift</Name>
+				<Source book="BR" lang="de" page="190"/>
+				<Availability>Village</Availability>
+				<Cost>2T</Cost>
+				<Hardness>1</Hardness>
+				<Complexity>U</Complexity>
+			</Item>
+			<Item id="itm_art_cosmetics">
+				<Name lang="de">Kosmetikkoffer</Name>
+				<Source book="BR" lang="de" page="190"/>
+				<Availability>SmallTown</Availability>
+				<Cost>15L</Cost>
+				<Weight>2</Weight>
+				<Complexity>F</Complexity>
+			</Item>
+			<Item id="itm_art_chalk">
+				<Name lang="de">Kreide</Name>
+				<Source book="BR" lang="de" page="190"/>
+				<Availability>Village</Availability>
+				<Cost>2T</Cost>
+				<Hardness>1</Hardness>
+				<Complexity>U</Complexity>
+			</Item>
+			<Item id="itm_art_lute">
+				<Name lang="de">Laute</Name>
+				<Source book="BR" lang="de" page="190"/>
+				<Availability>SmallTown</Availability>
+				<Cost>2L</Cost>
+				<Weight>3</Weight>
+				<Hardness>2</Hardness>
+				<Complexity>G</Complexity>
+			</Item>
+			<Item id="itm_art_canvas">
+				<Name lang="de">Leinwand</Name>
+				<Source book="BR" lang="de" page="190"/>
+				<Availability>SmallTown</Availability>
+				<Cost>30T</Cost>
+				<Weight>2</Weight>
+				<Complexity>G</Complexity>
+			</Item>
+			<Item id="itm_art_colors">
+				<Name lang="de">Malfarben</Name>
+				<Source book="BR" lang="de" page="190"/>
+				<Availability>SmallTown</Availability>
+				<Cost>50T</Cost>
+				<Weight>1</Weight>
+				<Complexity>G</Complexity>
+			</Item>
+			<Item id="itm_art_brush">
+				<Name lang="de">Pinsel</Name>
+				<Source book="BR" lang="de" page="190"/>
+				<Availability>Village</Availability>
+				<Cost>5T</Cost>
+				<Hardness>2</Hardness>
+				<Complexity>U</Complexity>
+			</Item>
+			<Item id="itm_art_mirror">
+				<Name lang="de">Spiegel</Name>
+				<Source book="BR" lang="de" page="190"/>
+				<Availability>SmallTown</Availability>
+				<Cost>3L</Cost>
+				<Weight>2</Weight>
+				<Complexity>G</Complexity>
+			</Item>
+			<Item id="itm_art_cards">
+				<Name lang="de">Spielkarten</Name>
+				<Source book="BR" lang="de" page="190"/>
+				<Availability>Village</Availability>
+				<Cost>15T</Cost>
+				<Complexity>U</Complexity>
+			</Item>
+			<Item id="itm_art_dice">
+				<Name lang="de">Würfel</Name>
+				<Source book="BR" lang="de" page="190"/>
+				<Availability>Village</Availability>
+				<Cost>5T</Cost>
+				<Hardness>2</Hardness>
+				<Complexity>U</Complexity>
+			</Item>
+			<!-- Clothing -->
+			<Item id="itm_clothing_fancy">
+				<Name lang="de">Prachtgewand</Name>
+				<Source book="BR" lang="de" page="190"/>
+				<Availability>SmallTown</Availability>
+				<Cost>20L</Cost>
+				<Weight>4</Weight>
+				<Complexity>M</Complexity>
+			</Item>
+			<Item id="itm_clothing_street">
+				<Name lang="de">Straßenkleidung</Name>
+				<Source book="BR" lang="de" page="190"/>
+				<Availability>Village</Availability>
+				<Cost>1L</Cost>
+				<Weight>3</Weight>
+				<Complexity>U</Complexity>
+			</Item>
+			<Item id="itm_clothing_wilderness">
+				<Name lang="de">Wildniskleidung</Name>
+				<Source book="BR" lang="de" page="190"/>
+				<Availability>Village</Availability>
+				<Cost>3L</Cost>
+				<Weight>3</Weight>
+				<Hardness>1</Hardness>
+				<Complexity>G</Complexity>
+			</Item>
+			<!-- Travel -->
+			<Item id="itm_travel_hatched">
+				<Name lang="de">Beil</Name>
+				<Source book="BR" lang="de" page="191"/>
+				<Availability>Village</Availability>
+				<Cost>4L</Cost>
+				<Weight>2</Weight>
+				<Hardness>5</Hardness>
+				<Complexity>U</Complexity>
+			</Item>
+			<!-- Alchemicals -->
+			<Item id="itm_alch_potion_endurance">
+				<Name lang="de">Ausdauertrunk</Name>
+				<Description lang="de">heilt 1 Stufe des Zustands Erschöpft</Description>
+				<Source book="BR" lang="de" page="191"/>
+				<Availability>SmallTown</Availability>
+				<Cost>5L</Cost>
+			</Item>
+			<!-- Animals -->
+			<Item id="itm_animal_donkey">
+				<Name lang="de">Esel</Name>
+				<Source book="BR" lang="de" page="191"/>
+				<Availability>Village</Availability>
+				<Cost>15L</Cost>
+			</Item>
+			<Item id="itm_animal_horse">
+				<Name lang="de">Pferd</Name>
+				<Source book="BR" lang="de" page="191"/>
+				<Availability>Village</Availability>
+				<Cost>50L</Cost>
+			</Item>
+			<Item id="itm_animal_dog">
+				<Name lang="de">Wach- oder Jagdhund</Name>
+				<Source book="BR" lang="de" page="191"/>
+				<Availability>Village</Availability>
+				<Cost>5L</Cost>
+			</Item>
+		</Equipment>
+		<Map></Map>
+		<Masteries></Masteries>
+		<Skills></Skills>
+		<Spells></Spells>
 		<Weapons>
-			<Weapon id="wpn_glaive">
-				<Name lang="de">Glefe</Name>
-				<Type>melee</Type>
-				<Damage>3D6+4</Damage>
-				<Speed>11</Speed>
-				<Cost>12</Cost>
-				<Source lang="de" book="QSR" page="12" />
+			<!-- Melee, brawl -->
+			<Weapon id="wpn_melee_">
+				<Name lang="de">XXXXXX</Name>
+				<Source book="BR" lang="de" page="183"/>
+				<Availability>SmallTown</Availability>
+				<Cost>10L</Cost>
+				<Weight>1</Weight>
+				<Hardness>7</Hardness>
+				<Complexity>G</Complexity>
+				<MinAttribute attribute="STR">2</MinAttribute>
+				<Feature>XXXXXX</Feature>
+				<Damage>1D6</Damage>
+				<Speed>5</Speed>
+				<UsedAttributes>BEW STR</UsedAttributes>
 			</Weapon>
-			<Weapon id="wpn_dagger">
-				<Name lang="de">Dolch</Name>
-				<Type>melee</Type>
-				<Damage>1D6+1</Damage>
-				<Speed>6</Speed>
-				<Cost>3</Cost>
-				<Source lang="de" book="QSR" page="12" />
+			<!-- Melee, blades -->
+			<!-- Melee, blunt -->
+			<!-- Melee, pole -->
+			<Weapon id="wpn_melee_">
+				<Name lang="de">XXXXXX</Name>
+				<Source book="BR" lang="de" page="185"/>
+				<Availability>SmallTown</Availability>
+				<Cost>10L</Cost>
+				<Weight>1</Weight>
+				<Hardness>7</Hardness>
+				<Complexity>G</Complexity>
+				<MinAttribute attribute="STR">2</MinAttribute>
+				<Feature>XXXXXX</Feature>
+				<Damage>1D6</Damage>
+				<Speed>5</Speed>
+				<UsedAttributes>BEW STR</UsedAttributes>
 			</Weapon>
-			<Weapon id="wpn_bow">
-				<Name lang="de">Langbogen</Name>
-				<Type>ranged</Type>
-				<Damage>2D6+2</Damage>
-				<Speed>9</Speed>
-				<Range>150</Range>
-				<Cost>15</Cost>
-				<Source lang="de" book="QSR" page="12" />
+			<!-- Melee, chain -->
+			<!-- Ranged, projectile -->
+			<Weapon id="wpn_ranged_">
+				<Name lang="de">XXXXXX</Name>
+				<Source book="BR" lang="de" page="187"/>
+				<Availability>SmallTown</Availability>
+				<Cost>10L</Cost>
+				<Weight>1</Weight>
+				<Hardness>7</Hardness>
+				<Complexity>G</Complexity>
+				<MinAttribute attribute="STR">2</MinAttribute>
+				<Feature>XXXXXX</Feature>
+				<Damage>1D6</Damage>
+				<Speed>5</Speed>
+				<UsedAttributes>BEW STR</UsedAttributes>
+				<AmmunitionCost>20T</AmmunitionCost>
+				<Range>25</Range>
+			</Weapon>
+			<!-- Ranged, thrown -->
+			<Weapon id="wpn_ranged_">
+				<Name lang="de">XXXXXX</Name>
+				<Source book="BR" lang="de" page="187"/>
+				<Availability>SmallTown</Availability>
+				<Cost>10L</Cost>
+				<Weight>1</Weight>
+				<Hardness>7</Hardness>
+				<Complexity>G</Complexity>
+				<MinAttribute attribute="STR">2</MinAttribute>
+				<Feature>XXXXXX</Feature>
+				<Damage>1D6</Damage>
+				<Speed>5</Speed>
+				<UsedAttributes>BEW STR</UsedAttributes>
+				<Range>25</Range>
 			</Weapon>
 		</Weapons>
 	</Index>

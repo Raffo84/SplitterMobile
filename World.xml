@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Splittermond date="2013-06-27" xmlns="http://www.stauder-online.de/Splittermond/v1">
+<Splittermond date="2017-03-13" xmlns="http://www.stauder-online.de/Splittermond/v1">
 	<!-- xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.stauder-online.de/Splittermond/v1 http://www.stauder-online.de/Splittermond/v1.xsd" -->
-	<BookDefinition shortname="QSR">
-		<Fullname lang="de">Schnellstart-Regeln (Beta-Version)</Fullname>
-		<Fullname lang="en">Quickstart rules (Beta version)</Fullname>
-		<Link>http://splittermond.de/wp-content/uploads/2013/06/Splittermond_Schnellstarter.pdf</Link>
-		<ISBN>987-654-654-654</ISBN>
+	<BookDefinition shortname="World">
+		<Fullname lang="de">Die Welt</Fullname>
+		<Fullname lang="en">World sourcebook</Fullname>
+		<Link>http://shop.uhrwerk-verlag.de/splittermond/240-splittermond-welt.html</Link>
+		<ISBN>978-3942012775</ISBN>
 	</BookDefinition>
 	<Index>
 		<Map>
@@ -34,9 +34,9 @@
 						<Name lang="de">Arwinger Mark</Name>
 						<Description lang="de">Idealer Ort für Einsteiger</Description>
 						<Source lang="de" book="QSR" page="5" />
-						<City id="Arwingen">
+						<POI id="Arwingen">
 							<Name lang="de">Arwingen</Name>
-						</City>
+						</POI>
 					</Area>
 				</Realm>
 			</Region>
